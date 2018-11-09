@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/cineafx/arma-artillery-rangetable-creator/issues"
   },
-  "homepage": "https://github.com/cineafx/arma-artillery-rangetable-creator#readme"
+  "homepage": "https://github.com/cineafx/arma-artillery-rangetable-creator#readme",
+  "dependencies": {
+    "mysql2": "^1.6.4",
+    "util": "^0.11.1"
+  }
 }

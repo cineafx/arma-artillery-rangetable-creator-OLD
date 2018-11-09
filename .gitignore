@@ -1,6 +1,6 @@
 #atom remote ftp
 .ftpconfig
-.tfpignore
+.ftpignore
 
 #config
 config.json

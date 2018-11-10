@@ -70,17 +70,17 @@ async function handlePOST(jsonObj) {
             CAST(muzzleVelocity AS CHAR) AS 'muzzleVelocity',
             CAST(airFriction AS CHAR) AS 'airFriction',
             CAST(rangetableData.range AS CHAR) AS 'range',
-          	elevation,
-          	heightElevation,
-          	heightTimeDelta,
-          	timeOfFlight,
-          	crosswindDeg,
-          	headwindMeters,
-          	tailWindMeters,
-          	tempDec,
-          	tempInc,
-          	airDensDec,
-          	airDensInc
+            elevation,
+            heightElevation,
+            heightTimeDelta,
+            timeOfFlight,
+            crosswindDeg,
+            headwindMeters,
+            tailWindMeters,
+            tempDec,
+            tempInc,
+            airDensDec,
+            airDensInc
           FROM rangetableData
           WHERE ABS( muzzleVelocity - (
             SELECT ROUND(initSpeed * artilleryCharge, 2) AS 'muzzlevelocity'

@@ -90,20 +90,20 @@ async function handlePOST(jsonObj) {
             WHERE vehicles.ID = ?
             AND chargeNR = ?
           ) ) < 0.00001
-          AND (
-          ABS( airFriction - (
-            SELECT airFrictionIfUsed
-            FROM vehicles
-            LEFT JOIN charges
-            ON vehicles.ID = charges.vehicleID
-            WHERE vehicles.ID = ?
-            AND chargeNR = ?
-          ) ) < 0.00001
-          XOR !?
-          );
+          AND ABS(
+          	airFriction - (
+          		SELECT if(?, airFrictionIfUsed, 0)
+          		FROM vehicles
+          		LEFT JOIN charges
+          		ON vehicles.ID = charges.vehicleID
+          		WHERE vehicles.ID = ?
+          		AND chargeNR = ?
+          	)
+          ) < 0.00001
+          ;
         `
 
-        var result = await pool.execute(sqlString, [mortarID, charges, mortarID, charges, airResistanceEnabled])
+        var result = await pool.execute(sqlString, [mortarID, charges, airResistanceEnabled, mortarID, charges])
         console.log(JSON.stringify(result[0]))
         returnObj = {type:"getTable", data: result}
       } catch(err) {
